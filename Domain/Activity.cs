@@ -6,7 +6,7 @@ namespace Domain
     {
         public Guid Id { get; set; }
 
-        public string Tiltle { get; set; }
+        public string Title { get; set; }
 
         public DateTime Date { get; set; }
 

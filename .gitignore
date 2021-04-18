@@ -6,6 +6,11 @@
 *.user
 *.userosscache
 *.sln.docstates
+## specific sqlite db
+*reactivities.db
+*reactivities.db*
+## app settings
+appsettings.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

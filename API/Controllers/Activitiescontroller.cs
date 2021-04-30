@@ -29,5 +29,12 @@ namespace API.Controllers
             return Ok(await Mediator.Send(new Create.Command {Activity=activity}));
         }
         
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> EditActivity(Guid Id, Activity activity)
+        {
+            activity.Id = Id;
+            return Ok(await Mediator.Send(new Edit.Command{Activity = activity}));
+        }
+
     }
 }

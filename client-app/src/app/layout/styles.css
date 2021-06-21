@@ -1,5 +1,6 @@
 body{
   background-color: #EAEAEA !important;
+  height: fit-content;
 }
 
 .ui.inverted.top.fixed.menu {

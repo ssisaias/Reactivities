@@ -26,7 +26,8 @@ editMode, openForm, closeForm, createOrEdit, deleteActivity, submitting}: Props)
                 <ActivityList 
                 activities={activities} 
                 selectActivity={selectActivity}
-                deleteActivity={deleteActivity}></ActivityList>
+                deleteActivity={deleteActivity}
+                submitting={submitting}></ActivityList>
             </Grid.Column>
             <Grid.Column width='6'>
                 {selectedActivity && !editMode &&

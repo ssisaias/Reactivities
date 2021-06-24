@@ -13,7 +13,7 @@ const responseBody = <T> (response: AxiosResponse<T>) => response.data;
 
 axios.interceptors.response.use(async response => {
   try {
-    await sleep(1500);
+    await sleep(300);
     return response;
   } catch (error) {
     console.log(error);

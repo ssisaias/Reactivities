@@ -3,11 +3,8 @@ import { Button, Card, Image } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 
-interface Props {
-    
-}
 
-export default function ActivityDetails({}: Props){
+export default function ActivityDetails(){
     const {activityStore} = useStore();
     const {selectedActivity: activity, openForm, cancelSelectedActivity} = activityStore;
 

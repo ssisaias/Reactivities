@@ -2,11 +2,8 @@ import React from 'react';
 import { Button, Container, Menu } from 'semantic-ui-react';
 import { useStore } from '../stores/store';
 
-interface Props{
-    
-}
 
-export default function NavBar({}: Props){
+export default function NavBar(){
 
     const {activityStore} = useStore();
 

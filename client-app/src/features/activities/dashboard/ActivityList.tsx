@@ -7,26 +7,24 @@ import ActivityListItem from './ActivityListItem';
 
 
 export default observer(function ActivityList() {
-    const {activityStore} = useStore();
-    const {groupedActivitiesByDate} = activityStore;
-    
-    return(
+    const { activityStore } = useStore();
+    const { groupedActivitiesByDate } = activityStore;
+
+    return (
         <>
             {groupedActivitiesByDate.map(([group, activities]) => (
                 <Fragment key={group}>
                     <Header sub color='teal'>
                         {group}
                     </Header>
-                    <Segment>
-                        <Item.Group divided>
-                            {activities.map(activity => (
-                                <ActivityListItem key={activity.id} activity={activity}></ActivityListItem>
-                            ))} 
-                        </Item.Group>
-                    </Segment>
+
+                    {activities.map(activity => (
+                        <ActivityListItem key={activity.id} activity={activity}></ActivityListItem>
+                    ))}
+
                 </Fragment>
             ))}
         </>
-        
+
     )
 })

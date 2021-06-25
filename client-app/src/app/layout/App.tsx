@@ -13,13 +13,17 @@ function App() {
 
   return (
     <>
-      <NavBar></NavBar>
-      <Container style={{marginTop: '7em'}}>
-        <Route exact path='/' component={HomePage} />
-        <Route exact path='/activities' component={activityDashboard} />
-        <Route path='/activities/:id' component={ActivityDetails} />
-        <Route path={['/createActivity', '/manage/:id']} key={location.key} component={ActivitiyForm} />
-      </Container>
+      <Route exact path='/' component={HomePage} />
+      <Route path={`/(.+)`} render={()=>(
+        <>
+          <NavBar></NavBar>
+          <Container style={{marginTop: '7em'}}>
+            <Route exact path='/activities' component={activityDashboard} />
+            <Route path='/activities/:id' component={ActivityDetails} />
+            <Route path={['/createActivity', '/manage/:id']} key={location.key} component={ActivitiyForm} />
+          </Container>
+        </>
+      )}/>
     </>
   );
 }

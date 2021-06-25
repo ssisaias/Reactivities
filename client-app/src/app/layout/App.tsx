@@ -2,14 +2,15 @@ import React from 'react';
 import { Container } from 'semantic-ui-react';
 import NavBar from './NavBar';
 import { observer } from 'mobx-react-lite';
-import { Route } from 'react-router';
+import { Route, useLocation } from 'react-router';
 import HomePage from '../../features/home/HomePage';
 import ActivitiyForm from '../../features/activities/form/ActivitiyForm';
 import activityDashboard from '../../features/activities/dashboard/activityDashboard';
 import ActivityDetails from '../../features/activities/details/ActivityDetails';
 
 function App() {
-  
+  const location = useLocation();
+
   return (
     <>
       <NavBar></NavBar>
@@ -17,7 +18,7 @@ function App() {
         <Route exact path='/' component={HomePage} />
         <Route exact path='/activities' component={activityDashboard} />
         <Route path='/activities/:id' component={ActivityDetails} />
-        <Route path='/createActivity' component={ActivitiyForm} />
+        <Route path={['/createActivity', '/manage/:id']} key={location.key} component={ActivitiyForm} />
       </Container>
     </>
   );

@@ -39,7 +39,7 @@ namespace API.Controllers
         [HttpDelete("{Id}")]
         public async Task<IActionResult> DeleteActivity(Guid Id)
         {
-            return Ok(await Mediator.Send(new Delete.Command{Id=Id}));
+            return HandleResult(await Mediator.Send(new Delete.Command{Id=Id}));
         }
     }
 }

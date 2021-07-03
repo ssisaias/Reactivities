@@ -8,6 +8,7 @@ import ActivitiyForm from '../../features/activities/form/ActivitiyForm';
 import activityDashboard from '../../features/activities/dashboard/activityDashboard';
 import ActivityDetails from '../../features/activities/details/ActivityDetails';
 import TestErrors from '../../features/errors/TestError';
+import ServerError from '../../features/errors/ServerError';
 import { ToastContainer } from 'react-toastify';
 import NotFound from '../../features/errors/NotFound';
 import { Switch } from 'react-router-dom';
@@ -28,6 +29,7 @@ function App() {
               <Route path='/activities/:id' component={ActivityDetails} />
               <Route path={['/createActivity', '/manage/:id']} key={location.key} component={ActivitiyForm} />
               <Route path='/errors' component={TestErrors}></Route>
+              <Route path='/server-error' component={ServerError}></Route>
               <Route component={NotFound} />
             </Switch>
           </Container>

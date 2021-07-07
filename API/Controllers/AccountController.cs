@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using API.DTOs;
+using API.Services;
 using Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,8 +13,10 @@ namespace API.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        private readonly TokenService _tokenService;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, TokenService tokenService)
         {
+            this._tokenService = tokenService;
             this._signInManager = signInManager;
             this._userManager = userManager;
         }
@@ -23,19 +26,21 @@ namespace API.Controllers
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
 
-            if(user == null) return Unauthorized();
+            if (user == null) return Unauthorized();
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
-            if(result.Succeeded) {
-                return new UserDto {
+            if (result.Succeeded)
+            {
+                return new UserDto
+                {
                     DisplayName = user.DisplayName,
                     Image = null,
-                    Token = "This will be a token",
+                    Token = _tokenService.CreateToken(user),
                     Username = user.UserName
                 };
             }
-            
+
             return Unauthorized();
         }
     }

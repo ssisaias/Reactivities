@@ -1,7 +1,7 @@
 import { ErrorMessage, Form, Formik } from 'formik';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { Button, Label } from 'semantic-ui-react';
+import { Button, Header, Label } from 'semantic-ui-react';
 import MyTextInput from '../../app/common/form/MyTextInput';
 import { useStore } from '../../app/stores/store';
 
@@ -12,6 +12,7 @@ export default observer(function LoginForm() {
       onSubmit={(values, {setErrors}) => userStore.login(values).catch(error => setErrors({error: 'Invalid email or password'}))}>
       {({ handleSubmit, isSubmitting, errors }) => (
         <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
+          <Header className='ui form' content='Login to Reactivities' color='teal' textAlign='center'></Header>
           <MyTextInput name='email' placeholder='Email' />
           <MyTextInput name='password' placeholder='Password' type='password' />
           <ErrorMessage

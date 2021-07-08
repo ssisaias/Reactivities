@@ -13,9 +13,23 @@ import { ToastContainer } from 'react-toastify';
 import NotFound from '../../features/errors/NotFound';
 import { Switch } from 'react-router-dom';
 import LoginForm from '../../features/users/LoginForm';
+import { useStore } from '../stores/store';
+import { useEffect } from 'react';
+import LoadingComponent from './LoadingComponent';
 
 function App() {
   const location = useLocation();
+  const {commonStore, userStore} = useStore();
+
+  useEffect(()=> {
+    if(commonStore.token){
+      userStore.getUser().finally(()=> commonStore.setAppLoaded());
+    } else {
+      commonStore.setAppLoaded();
+    }
+  }, [commonStore, userStore]);
+
+  if(!commonStore.appLoaded) return <LoadingComponent content='Loading app...'/>
 
   return (
     <>

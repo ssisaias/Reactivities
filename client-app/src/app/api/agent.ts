@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { request } from 'node:http';
 import { toast } from 'react-toastify';
 import { history } from '../..';
 import { Activity } from '../models/activity';
@@ -74,7 +75,8 @@ const Activities = {
   details: (id: string) => requests.get<Activity>(`/activities/${id}`),
   create: (activity: Activity) => requests.post<void>('activities', activity),
   update: (activity: Activity) => requests.put<void>(`/activities/${activity.id}`, activity),
-  delete: (id: string) => requests.del<void>(`/activities/${id}`)
+  delete: (id: string) => requests.del<void>(`/activities/${id}`),
+  attend: (id: string) => requests.post<void>(`/activities/${id}/attend`, {})
 }
 
 const Account = {
